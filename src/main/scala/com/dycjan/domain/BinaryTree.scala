@@ -17,8 +17,9 @@ case class Leaf(value: Value) extends BinaryTree
 object BinaryTree {
   implicit val binaryTreeShow = new Show[BinaryTree] {
     override def show(t: BinaryTree): String = t match {
-      case Node(v, l, r) => Show[Value].show(v) + "\n" + show(l) + " " + show(r)
+      case Node(v, l, r) => s"(${show(l)}, ${Show[Value].show(v)}, ${show(r)})"
       case Leaf(v) => Show[Value].show(v)
+
     }
   }
 }

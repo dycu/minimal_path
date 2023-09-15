@@ -1,6 +1,5 @@
 package com.dycjan
 
-import cats.effect.IO
 import cats.implicits._
 import com.dycjan.domain.{BinaryTree, Leaf, Node, Value}
 
@@ -26,6 +25,5 @@ class TriangleParser {
       case (_, _) => Leaf(Value(v))
     }
   }
-
 
 }
