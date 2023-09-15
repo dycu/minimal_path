@@ -1,13 +1,15 @@
-# minimal_path
+# Minimum/Maximum triangle path
 
-## Plan
+The solution to this problem is widely known and my first assumption was that the
+default recursive solution would fail for bigger inputs. Then I followed
+the tail recursive solution that going from the bottom up calculates intermidiate
+steps to remember which path it should follow going back (memoization).
 
-### Components needed
-
-1. Triangle parser - Gets the lines with the values and builds the proper structure from it checking all the requirements to be a proper triangle
-2. Input reader - read the input from standard input
-3. Minimal path calculator - executes the algorithm
-4. Ways of displaying the triangle and the output path
+It probably could be simplified to collect all the data while going up, without the
+intermidiate step of collecting the `Path` and to follow it to collect the exact
+values from the nodes. But this way it seemed easier to implement and to be
+more readable than having it done in one go. The most difficult part, performance
+wise, is while we're looking for the path, not getting the values, anyway.
 
 ## Run application
 

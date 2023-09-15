@@ -7,6 +7,9 @@ import scala.annotation.tailrec
 
 case class Pair(left: Min, right: Min)
 
+/** Collects the information about the sum of minimal values while going from
+  * the leaf at some point with the path taken to get there.
+  */
 case class Min(minValue: Value, takenPath: Path)
 
 /** Solves the problem.
