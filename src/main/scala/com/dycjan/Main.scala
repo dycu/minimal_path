@@ -2,7 +2,7 @@ package com.dycjan
 
 import cats.Show
 import cats.effect.kernel.Resource
-import cats.effect.{ExitCode, IO, IOApp}
+import cats.effect.{IO, IOApp}
 import com.dycjan.domain.Triangle
 
 import scala.io.{Source, StdIn}
@@ -14,7 +14,7 @@ object Main extends IOApp.Simple {
   private val minimalPathCalculator = new MinimalPathCalculator(pathFollower)
 
   def run: IO[Unit] = {
-    (for {
+    for {
       _ <- IO(print("Input file name: "))
       fileName <- IO(StdIn.readLine())
       result <- Resource
@@ -22,7 +22,7 @@ object Main extends IOApp.Simple {
         .use { input =>
           runProgram(input.getLines().toList)
         }
-    } yield result).as(ExitCode.Success)
+    } yield result
   }
 
   def runProgram(input: List[String]): IO[Unit] = {

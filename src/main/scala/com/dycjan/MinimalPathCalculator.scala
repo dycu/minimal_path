@@ -37,6 +37,7 @@ class MinimalPathCalculator(pathFollower: PathFollower) {
   @tailrec
   private def findPath(rows: List[List[Min]]): Option[Min] = {
     rows match {
+      case Nil => None
       case lastRow :: Nil =>
         Some(lastRow.head)
       case firstRow :: restOfRows =>
