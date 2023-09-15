@@ -1,3 +1,5 @@
 package com.dycjan.domain
 
-case class Path(steps: List[Value])
+import com.dycjan.Step
+
+case class Path(steps: List[Step])
