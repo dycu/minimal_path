@@ -13,6 +13,9 @@
 
 ```shell
 sbt run
+
+And then provide the file name, e.g.:
+input
 ```
 
 ## Run tests

@@ -1,10 +1,19 @@
 package com.dycjan
 
-import cats.effect.IOApp
-import cats.effect.IO
+import cats.effect.{IO, IOApp}
+
+import scala.io.StdIn
 
 object Main extends IOApp.Simple {
 
-  def run: IO[Unit] = ???
+  val inputReader = new InputReader
+
+  def run: IO[Unit] = {
+    for {
+      _ <- IO(println("Input file name:"))
+      fileName <- IO(StdIn.readLine())
+      _ <- inputReader.readInput(fileName)
+    } yield ()
+  }
 
 }
