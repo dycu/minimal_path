@@ -6,7 +6,8 @@ import scala.io.StdIn
 
 object Main extends IOApp.Simple {
 
-  val inputReader = new InputReader
+  private val triangleParser = new TriangleParser
+  val inputReader = new InputReader(triangleParser)
 
   def run: IO[Unit] = {
     for {
