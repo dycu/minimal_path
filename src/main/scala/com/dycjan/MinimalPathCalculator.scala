@@ -13,24 +13,29 @@ case class Min(minValue: Value, takenPath: Path)
   */
 class MinimalPathCalculator(pathFollower: PathFollower) {
 
-  def calculateMinimalPath(triangle: Triangle): List[Value] = {
+  def findMinimalPath(triangle: Triangle): List[Value] = {
     val topDownTriangleWithEmptyPaths =
       triangle.values.map(vs => vs.map(v => Min(v, Path(List.empty)))).reverse
 
-    pathFollower.findValues(
-      Path(
-        findPath(topDownTriangleWithEmptyPaths).takenPath.steps.reverse
-      ).steps,
-      triangle.values,
-      0
-    )
+    findPath(topDownTriangleWithEmptyPaths)
+      .map(path =>
+        pathFollower.findValues(
+          Path(
+            path.takenPath.steps.reverse
+          ).steps,
+          triangle.values,
+          0
+        )
+      )
+      .toList
+      .flatten
   }
 
   @tailrec
-  private def findPath(rows: List[List[Min]]): Min = {
+  private def findPath(rows: List[List[Min]]): Option[Min] = {
     rows match {
       case lastRow :: Nil =>
-        lastRow.head
+        Some(lastRow.head)
       case firstRow :: restOfRows =>
         findPath(addMinsToRow(calculateCosts(firstRow), restOfRows))
     }
@@ -42,8 +47,11 @@ class MinimalPathCalculator(pathFollower: PathFollower) {
         Min(left.minValue, Path(left.takenPath.steps ++ List(LeftStep)))
       case Pair(left, right) if right.minValue.v < left.minValue.v =>
         Min(right.minValue, Path(right.takenPath.steps ++ List(RightStep)))
-      case Pair(left, right) if left.minValue.v == right.minValue.v =>
-        Min(left.minValue, Path(left.takenPath.steps ++ List(LeftStep)))
+      case pair: Pair =>
+        Min(
+          pair.left.minValue,
+          Path(pair.left.takenPath.steps ++ List(LeftStep))
+        )
     }
   }
 

@@ -15,7 +15,7 @@ class MinimalPathCalculatorSpec extends AnyWordSpec with Matchers {
         val triangle = Triangle(List(List(Value(1))))
         val path = List(Value(1))
 
-        calculator.calculateMinimalPath(
+        calculator.findMinimalPath(
           triangle
         ) shouldEqual path
       }
@@ -32,7 +32,7 @@ class MinimalPathCalculatorSpec extends AnyWordSpec with Matchers {
         )
         val path = List(Value(1), Value(1), Value(1))
 
-        calculator.calculateMinimalPath(
+        calculator.findMinimalPath(
           triangle
         ) shouldEqual path
       }

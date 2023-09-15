@@ -27,7 +27,7 @@ object Main extends IOApp.Simple {
 
   def runProgram(input: List[String]): IO[Unit] = {
     val triangle = triangleParser.parseInput(input)
-    val minimalPath = minimalPathCalculator.calculateMinimalPath(triangle)
+    val minimalPath = minimalPathCalculator.findMinimalPath(triangle)
 
     IO {
       println("Triangle: ")
