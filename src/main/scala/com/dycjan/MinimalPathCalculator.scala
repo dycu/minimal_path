@@ -1,15 +1,9 @@
 package com.dycjan
 
-import com.dycjan.Step.{LeftStep, RightStep}
+import com.dycjan.domain.Step.{LeftStep, RightStep}
 import com.dycjan.domain.{Path, Triangle, Value}
 
 import scala.annotation.tailrec
-
-trait Step
-object Step {
-  case object LeftStep extends Step
-  case object RightStep extends Step
-}
 
 case class Pair(left: Min, right: Min)
 
@@ -17,13 +11,13 @@ case class Min(minValue: Value, takenPath: Path)
 
 /** Solves the problem.
   */
-class MinimalPathCalculator {
+class MinimalPathCalculator(pathFollower: PathFollower) {
 
   def calculateMinimalPath(triangle: Triangle): List[Value] = {
     val initial =
       triangle.values.map(vs => vs.map(v => Min(v, Path(List.empty)))).reverse
 
-    findValues(
+    pathFollower.findValues(
       Path(findPath(initial).takenPath.steps.reverse).steps,
       triangle.values,
       0,
@@ -52,8 +46,7 @@ class MinimalPathCalculator {
     }
   }
 
-  // TODO: move to separate service
-  def pairValues(row: List[Min]): List[Pair] = {
+  private def pairValues(row: List[Min]): List[Pair] = {
     row.indices
       .dropRight(1)
       .map { idx =>
@@ -75,31 +68,6 @@ class MinimalPathCalculator {
     }
 
     List(newRow) ++ rowsLeft.tail
-  }
-
-  def findValues(
-      path: List[Step],
-      rows: List[List[Value]],
-      x: Int,
-      y: Int
-  ): List[Value] = {
-    path match {
-      case Nil =>
-        List(rows(x)(y))
-      case step :: rest =>
-        step match {
-          case LeftStep =>
-            List(rows(x)(y)) ++ findValues(rest, rows, x + 1, y)
-          case RightStep =>
-            List(rows(x)(y)) ++ findValues(
-              rest,
-              rows,
-              x + 1,
-              y + 1
-            )
-        }
-
-    }
   }
 
 }

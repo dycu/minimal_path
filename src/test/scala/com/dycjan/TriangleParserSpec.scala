@@ -5,7 +5,7 @@ import com.dycjan.domain.{Triangle, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class TriangleParserSpec extends AnyWordSpec with Matchers{
+class TriangleParserSpec extends AnyWordSpec with Matchers {
 
   val parser = new TriangleParser
 
@@ -14,7 +14,7 @@ class TriangleParserSpec extends AnyWordSpec with Matchers{
       "parse it to leaf" in {
         val result = parser.parseInput(List("1"))
         println(Show[Triangle].show(result))
-          result shouldEqual Triangle(List(List(Value(1))))
+        result shouldEqual Triangle(List(List(Value(1))))
       }
     }
 
@@ -22,7 +22,9 @@ class TriangleParserSpec extends AnyWordSpec with Matchers{
       "parse it to node with leaves" in {
         val result = parser.parseInput(List("1", "1 2"))
         println(Show[Triangle].show(result))
-        result shouldEqual Triangle(List(List(Value(1)), List(Value(1), Value(2))))
+        result shouldEqual Triangle(
+          List(List(Value(1)), List(Value(1), Value(2)))
+        )
       }
     }
   }

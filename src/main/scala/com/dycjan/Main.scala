@@ -6,8 +6,9 @@ import scala.io.StdIn
 
 object Main extends IOApp.Simple {
 
-  private val triangleParser = new TriangleParser
-  private val minimalPathCalculator = new MinimalPathCalculator
+  private val pathFollower = new PathFollower()
+  private val triangleParser = new TriangleParser()
+  private val minimalPathCalculator = new MinimalPathCalculator(pathFollower)
   val inputReader = new InputReader(triangleParser, minimalPathCalculator)
 
   def run: IO[Unit] = {

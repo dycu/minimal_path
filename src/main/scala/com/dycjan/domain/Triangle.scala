@@ -10,6 +10,7 @@ object Value {
   }
 }
 
+// TODO: change model to use NonEmptyLists
 case class Triangle(values: List[List[Value]])
 
 object Triangle {
@@ -19,4 +20,3 @@ object Triangle {
   }
 
 }
-
