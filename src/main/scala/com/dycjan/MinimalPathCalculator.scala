@@ -59,7 +59,6 @@ class MinimalPathCalculator(pathFollower: PathFollower) {
       calculatedMins: List[Min],
       rowsLeft: List[List[Min]]
   ): List[List[Min]] = {
-
     val newRow = rowsLeft.head.zip(calculatedMins).map { case (old, added) =>
       Min(
         Value(old.minValue.v + added.minValue.v),

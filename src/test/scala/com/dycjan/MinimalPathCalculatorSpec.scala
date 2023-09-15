@@ -1,7 +1,6 @@
 package com.dycjan
 
-import com.dycjan.domain.Step.{LeftStep, RightStep}
-import com.dycjan.domain.{Path, Triangle, Value}
+import com.dycjan.domain.{Triangle, Value}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -14,7 +13,7 @@ class MinimalPathCalculatorSpec extends AnyWordSpec with Matchers {
     "there's only one element" should {
       "return this element" in {
         val triangle = Triangle(List(List(Value(1))))
-        val path = Path(List.empty)
+        val path = List(Value(1))
 
         calculator.calculateMinimalPath(
           triangle
@@ -31,7 +30,7 @@ class MinimalPathCalculatorSpec extends AnyWordSpec with Matchers {
             List(Value(2), Value(1), Value(3))
           )
         )
-        val path = Path(List(LeftStep, RightStep))
+        val path = List(Value(1), Value(1), Value(1))
 
         calculator.calculateMinimalPath(
           triangle
