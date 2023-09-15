@@ -14,13 +14,14 @@ case class Min(minValue: Value, takenPath: Path)
 class MinimalPathCalculator(pathFollower: PathFollower) {
 
   def calculateMinimalPath(triangle: Triangle): List[Value] = {
-    val initial =
+    val topDownTriangleWithEmptyPaths =
       triangle.values.map(vs => vs.map(v => Min(v, Path(List.empty)))).reverse
 
     pathFollower.findValues(
-      Path(findPath(initial).takenPath.steps.reverse).steps,
+      Path(
+        findPath(topDownTriangleWithEmptyPaths).takenPath.steps.reverse
+      ).steps,
       triangle.values,
-      0,
       0
     )
   }

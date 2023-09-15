@@ -23,7 +23,6 @@ class PathFollowerSpec extends AnyWordSpec with Matchers {
       pathFollower.findValues(
         path.steps,
         triangle.values,
-        0,
         0
       ) shouldEqual List(Value(1), Value(1), Value(1))
     }

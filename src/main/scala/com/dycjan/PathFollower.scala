@@ -10,21 +10,19 @@ class PathFollower {
   def findValues(
       path: List[Step],
       rows: List[List[Value]],
-      x: Int,
       y: Int
   ): List[Value] = {
     path match {
       case Nil =>
-        List(rows(x)(y))
+        List(rows.head(y))
       case step :: rest =>
         step match {
           case LeftStep =>
-            List(rows(x)(y)) ++ findValues(rest, rows, x + 1, y)
+            List(rows.head(y)) ++ findValues(rest, rows.tail, y)
           case RightStep =>
-            List(rows(x)(y)) ++ findValues(
+            List(rows.head(y)) ++ findValues(
               rest,
-              rows,
-              x + 1,
+              rows.tail,
               y + 1
             )
         }
