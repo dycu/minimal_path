@@ -1,12 +1,12 @@
 package com.dycjan
 
-import com.dycjan.domain.{BinaryTree, Path}
+import com.dycjan.domain.{Path, Triangle}
 
 /**
  * Solves the problem.
  */
 class MinimalPathCalculator {
 
-  def calculateMinimalPath(tree: BinaryTree): Path = ???
+  def calculateMinimalPath(triangle: Triangle): Path = ???
 
 }
